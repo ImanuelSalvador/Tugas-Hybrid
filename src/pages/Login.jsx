@@ -17,7 +17,7 @@ export default function Login({ onLoginSuccess }) {
 
   function submitAuth() {
     setErr("");
-    if (true) {
+    if (mode === "login") {
       if (!u.trim() || !p.trim()) {
         setErr("NIM dan kata sandi wajib diisi!");
         return;
@@ -75,7 +75,7 @@ export default function Login({ onLoginSuccess }) {
   }
 
   function isiOtomatisDemo() {
-    if (true) {
+    if (mode === "login") {
       setU("student");
       setP("12345");
       setErr("");
@@ -97,10 +97,10 @@ export default function Login({ onLoginSuccess }) {
 
         <View style={s.welcomeWrap}>
           <Text style={s.welcomeTitle}>
-            {true ? "Selamat Datang Kembali" : "Pendaftaran Akun Baru"}
+            {mode === "login" ? "Selamat Datang Kembali" : "Pendaftaran Akun Baru"}
           </Text>
           <Text style={s.welcomeSub}>
-            {true 
+            {mode === "login" 
               ? "Masuk untuk mengakses materi perkuliahan & kuis" 
               : "Lengkapi data mahasiswa untuk membuat sesi baru"}
           </Text>
@@ -109,9 +109,9 @@ export default function Login({ onLoginSuccess }) {
         <View style={s.tabWrap}>
           <TouchableOpacity
             onPress={() => { setMode("login"); setErr(""); }}
-            style={[s.tabBtn, true && s.tabBtnActive]}
+            style={[s.tabBtn, mode === "login" && s.tabBtnActive]}
           >
-            <Text style={[s.tabTxt, true && s.tabTxtActive]}>Masuk (Login)</Text>
+            <Text style={[s.tabTxt, mode === "login" && s.tabTxtActive]}>Masuk (Login)</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { setMode("register"); setErr(""); }}
@@ -128,7 +128,7 @@ export default function Login({ onLoginSuccess }) {
           </View>
         ) : null}
 
-        {true ? (
+        {mode === "login" ? (
           <View>
             <InputField
               label="NIM atau Username Mahasiswa"
@@ -201,7 +201,7 @@ export default function Login({ onLoginSuccess }) {
           ) : (
             <View style={s.btnContentRow}>
               <Text style={s.btnSubmitTxt}>
-                {true ? "Masuk ke Beranda" : "Daftarkan Akun"}
+                {mode === "login" ? "Masuk ke Beranda" : "Daftarkan Akun"}
               </Text>
               <Icon name="arrowRight" size={16} color="#ffffff" />
             </View>
@@ -225,10 +225,10 @@ export default function Login({ onLoginSuccess }) {
           </View>
           <View style={{ flex: 1 }}>
             <Text style={s.demoTitle}>
-              {true ? "Gunakan Akun Mahasiswa Demo" : "Isi Formulir Pendaftaran Demo"}
+              {mode === "login" ? "Gunakan Akun Mahasiswa Demo" : "Isi Formulir Pendaftaran Demo"}
             </Text>
             <Text style={s.demoSub}>
-              {true ? "User: student | Sandi: 12345" : "NIM: 2802458592 | Email BINUS"}
+              {mode === "login" ? "User: student | Sandi: 12345" : "NIM: 2802458592 | Email BINUS"}
             </Text>
           </View>
           <Icon name="arrowRight" size={16} color="#b45309" />
