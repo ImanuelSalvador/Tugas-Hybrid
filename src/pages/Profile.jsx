@@ -1,153 +1,123 @@
 import { useState } from "react";
 
 function Profile({ user, onLogout, onNavigate }) {
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [notif, setNotif] = useState(true);
 
   return (
     <div className="w-full flex-1 flex flex-col overflow-y-auto no-scrollbar pb-24 text-left">
-      {/* Header */}
       <header className="w-full px-5 py-3 flex items-center justify-between sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/20">
-        <h1 className="font-headline text-lg font-bold text-on-surface">
-          Student Profile
+        <h1 className="font-headline text-base font-bold text-on-surface">
+          profil mahasiswa
         </h1>
         <button
           type="button"
           onClick={onLogout}
-          className="text-xs font-semibold text-error hover:bg-error-container/40 px-2.5 py-1 rounded-full transition-colors flex items-center gap-1"
+          className="text-xs text-error hover:bg-error-container/40 px-2 py-1 rounded-md flex items-center gap-1"
         >
           <span className="material-symbols-outlined text-sm">logout</span>
-          <span>Log Out</span>
+          <span>keluar</span>
         </button>
       </header>
 
-      {/* Main Profile Content */}
-      <main className="px-5 pt-4 space-y-4">
-        {/* Profile Avatar Card */}
-        <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-3xl p-5 text-center shadow-2xs space-y-3 relative overflow-hidden">
-          <div className="w-20 h-20 mx-auto rounded-full ring-4 ring-primary/20 overflow-hidden shadow-md">
+      <main className="px-5 pt-3 space-y-3.5">
+        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-4 text-center space-y-2.5">
+          <div className="w-16 h-16 mx-auto rounded-full ring-2 ring-primary/20 overflow-hidden shadow-xs">
             <img
               src={user?.avatar || "/assets/avatar.png"}
-              alt="Avatar"
+              alt="avatar"
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.style.display = 'none';
-                e.target.parentNode.innerHTML = '<span class="material-symbols-outlined text-primary text-5xl flex items-center justify-center h-full">person</span>';
+                e.target.parentNode.innerHTML = '<span class="material-symbols-outlined text-primary text-4xl flex items-center justify-center h-full">person</span>';
               }}
             />
           </div>
 
           <div>
-            <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-bold mb-1">
-              <span className="material-symbols-outlined text-xs fill-icon">verified</span>
-              <span>Active Student</span>
-            </div>
-            <h2 className="font-headline text-xl font-bold text-on-surface">
-              {user?.name || "William Surya"}
+            <span className="text-[10px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full inline-block mb-1">
+              mahasiswa aktif
+            </span>
+            <h2 className="font-headline text-base font-bold text-on-surface">
+              {user?.name || "imanuel salvador"}
             </h2>
             <p className="text-xs text-on-surface-variant">
               {user?.email || "student@edulearn.edu"}
             </p>
           </div>
 
-          {/* Quick Academic Meta */}
-          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-outline-variant/30">
+          <div className="grid grid-cols-3 gap-2 pt-2 border-t border-outline-variant/20 text-xs">
             <div>
-              <span className="font-headline text-sm font-bold text-on-surface block">3.92</span>
-              <span className="text-[10px] text-outline">GPA</span>
+              <span className="font-headline font-bold text-on-surface block">3.85</span>
+              <span className="text-[10px] text-outline">ipk</span>
             </div>
             <div>
-              <span className="font-headline text-sm font-bold text-on-surface block">Sem 4</span>
-              <span className="text-[10px] text-outline">Semester</span>
+              <span className="font-headline font-bold text-on-surface block">semester 4</span>
+              <span className="text-[10px] text-outline">tingkat</span>
             </div>
             <div>
-              <span className="font-headline text-sm font-bold text-primary block">1,420</span>
-              <span className="text-[10px] text-outline">XP Points</span>
+              <span className="font-headline font-bold text-primary block">20 sks</span>
+              <span className="text-[10px] text-outline">beban sks</span>
             </div>
           </div>
         </div>
 
-        {/* Certificates & Achievements */}
-        <section className="space-y-2">
-          <h3 className="font-headline text-sm font-bold text-on-surface">
-            My Badges & Certificates
+        <section className="space-y-1.5">
+          <h3 className="font-headline text-xs font-bold text-on-surface">
+            status tugas & pencapaian
           </h3>
           <div className="grid grid-cols-2 gap-2">
-            <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-3 flex items-center gap-2.5 shadow-2xs">
-              <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl fill-icon">military_tech</span>
-              </div>
-              <div className="overflow-hidden">
-                <span className="text-xs font-bold text-on-surface block truncate">JavaScript Pro</span>
-                <span className="text-[10px] text-outline block">Verified</span>
+            <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2.5 flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
+              <div className="truncate">
+                <span className="text-xs font-semibold text-on-surface block truncate">tugas 1 hybrid</span>
+                <span className="text-[10px] text-outline">selesai dinilai</span>
               </div>
             </div>
 
-            <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-3 flex items-center gap-2.5 shadow-2xs">
-              <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl fill-icon">workspace_premium</span>
-              </div>
-              <div className="overflow-hidden">
-                <span className="text-xs font-bold text-on-surface block truncate">Top 5% Cohort</span>
-                <span className="text-[10px] text-outline block">Academic</span>
+            <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2.5 flex items-center gap-2">
+              <span className="material-symbols-outlined text-secondary text-lg">verified</span>
+              <div className="truncate">
+                <span className="text-xs font-semibold text-on-surface block truncate">presensi 100%</span>
+                <span className="text-[10px] text-outline">terverifikasi</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Preferences & Settings */}
-        <section className="space-y-2">
-          <h3 className="font-headline text-sm font-bold text-on-surface">
-            Settings & Account
+        <section className="space-y-1.5">
+          <h3 className="font-headline text-xs font-bold text-on-surface">
+            pengaturan aplikasi
           </h3>
-          <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl divide-y divide-outline-variant/30 shadow-2xs overflow-hidden">
-            <div className="p-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-primary text-xl">notifications</span>
-                <div>
-                  <span className="text-xs font-semibold text-on-surface block">Push Notifications</span>
-                  <span className="text-[10px] text-outline">Assignment reminders</span>
-                </div>
-              </div>
+          <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl divide-y divide-outline-variant/20 overflow-hidden text-xs">
+            <div className="p-3 flex items-center justify-between">
+              <span>notifikasi deadline tugas</span>
               <input
                 type="checkbox"
-                checked={notificationsEnabled}
-                onChange={(e) => setNotificationsEnabled(e.target.checked)}
-                className="w-4 h-4 rounded text-primary focus:ring-primary cursor-pointer"
+                checked={notif}
+                onChange={(e) => setNotif(e.target.checked)}
+                className="w-4 h-4 rounded text-primary"
               />
             </div>
 
-            <div className="p-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-primary text-xl">quiz</span>
-                <div>
-                  <span className="text-xs font-semibold text-on-surface block">Take Academic Quiz</span>
-                  <span className="text-[10px] text-outline">Earn XP & review topics</span>
-                </div>
-              </div>
+            <div className="p-3 flex items-center justify-between">
+              <span>latihan kuis mandiri</span>
               <button
                 type="button"
                 onClick={() => onNavigate("quiz")}
-                className="text-xs font-bold text-primary hover:underline"
+                className="text-primary font-semibold hover:underline"
               >
-                Start
+                buka
               </button>
             </div>
 
-            <div className="p-3.5 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-error text-xl">logout</span>
-                <div>
-                  <span className="text-xs font-semibold text-error block">Sign Out</span>
-                  <span className="text-[10px] text-outline">Exit student session</span>
-                </div>
-              </div>
+            <div className="p-3 flex items-center justify-between">
+              <span className="text-error font-medium">keluar dari akun</span>
               <button
                 type="button"
                 onClick={onLogout}
-                className="text-xs font-bold text-error hover:underline"
+                className="text-error font-semibold hover:underline"
               >
-                Log Out
+                logout
               </button>
             </div>
           </div>
