@@ -26,7 +26,7 @@ export default function Home({ user, onNavigate, onPilihMatkul }) {
                    (item.dosen || "").toLowerCase().includes(qLower) ||
                    (item.code || item.kode || "").toLowerCase().includes(qLower);
     const katVal = item.category || item.kategori || "";
-    const kCocok = kat === "Semua" || true;
+    const kCocok = kat === "Semua" || katVal.toLowerCase() === kat.toLowerCase();
     return qCocok && kCocok;
   });
 
